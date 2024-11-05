@@ -1,0 +1,19 @@
+CREATE DATABASE Users
+USE Users
+
+CREATE TABLE Users(
+UsersId INT PRIMARY KEY IDENTITY,
+Username NVARCHAR(10) UNIQUE NOT NULL,
+[Password] VARCHAR(8) UNIQUE NOT NULL
+)
+
+CREATE TABLE Roles(
+RolesId INT REFERENCES Users(UsersId) PRIMARY KEY IDENTITY,
+[Name] NVARCHAR(25) UNIQUE NOT NULL
+)
+
+SELECT Users.Username,  Roles.Name AS [Role] FROM Users
+JOIN Roles
+ON RolesId=Users.UsersId
+
+
